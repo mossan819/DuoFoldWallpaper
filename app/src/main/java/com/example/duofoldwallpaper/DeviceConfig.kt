@@ -104,6 +104,16 @@ data class DeviceConfig(
             hingePositionPx = 800,
         )
 
+                /** HONOR Magic V6. */
+        val HONOR_MAGIC_V6 = DeviceConfig(
+            innerWidthPx = 2172,
+            innerHeightPx = 2352,
+            coverWidthPx = 1080,
+            coverHeightPx = 2420,
+            densityDpi = 405,
+            hingePositionPx = 1086,
+        )
+        
         /**
          * Auto-detects the device configuration at runtime.
          *
@@ -146,6 +156,8 @@ data class DeviceConfig(
                     model.contains("z fold5") || model.contains("z fold 5") ->
                     GALAXY_Z_FOLD_6 // close enough
 
+                device.contains("magic") || model.contains("honor magic") ->
+                    HONOR_MAGIC_V6
                 else -> null
             }
         }
