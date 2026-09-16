@@ -190,6 +190,7 @@ class DuoWallpaperService : WallpaperService() {
             if (event.sensor.type != Sensor.TYPE_HINGE_ANGLE) return
             if (demoMode) return
             val degrees = event.values[0]
+            mHingeAngle = degrees
             targetFold = ((180.0 - degrees) * PI / 180.0).toFloat().coerceIn(0f, PI.toFloat())
             postFrameCallbackIfNeeded()
         }
