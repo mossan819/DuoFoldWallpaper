@@ -127,10 +127,18 @@ class DuoWallpaperService : WallpaperService() {
 
         override fun onSurfaceCreated(holder: SurfaceHolder) {
             super.onSurfaceCreated(holder)
+            Log.d("DuoSurface", "=== onSurfaceCreated called ===")
+            Log.d("DuoSurface", "displayMetrics: ${holder.displayMetrics.widthPixels}x${holder.displayMetrics.heightPixels}")
+            Log.d("DuoSurface", "surfaceHolder: ${holder.surfaceFrame}")
             resolveDisplayRole()
         }
 
         private fun resolveDisplayRole() {
+        // Display情報をログ出力
+        val dm = getSystemService(Context.DISPLAY_SERVICE) as? DisplayManager
+        dm?.displays?.forEach { display ->
+            Log.d("DuoDisplay", "displayId=${display.displayId}, size=${display.width}x${display.height}, state=${display.state}")
+        }
             val displayId = getDisplayContext()?.display?.displayId
             isOuterDisplay = displayId != null && displayId != Display.DEFAULT_DISPLAY
             displayRoleResolved = true
@@ -139,6 +147,7 @@ class DuoWallpaperService : WallpaperService() {
 
         override fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
             super.onSurfaceChanged(holder, format, width, height)
+            Log.d("DuoSurface", "=== onSurfaceChanged: w=$width, h=$height ===")
             canvasWidth = width.toFloat()
             canvasHeight = height.toFloat()
         }
@@ -159,6 +168,7 @@ class DuoWallpaperService : WallpaperService() {
 
         override fun onSurfaceDestroyed(holder: SurfaceHolder) {
             super.onSurfaceDestroyed(holder)
+            Log.d("DuoSurface", "=== onSurfaceDestroyed ===")
             sensorManager.unregisterListener(this)
             stopFrameLoop()
         }
