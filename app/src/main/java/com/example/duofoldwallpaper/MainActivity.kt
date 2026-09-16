@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        startService(Intent(this, OverlayFoldService::class.java))
+        
         val density = resources.displayMetrics.density
         val padding = (24 * density).toInt()
         val smallPad = (12 * density).toInt()
