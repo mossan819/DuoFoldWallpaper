@@ -128,17 +128,12 @@ class DuoWallpaperService : WallpaperService() {
         override fun onSurfaceCreated(holder: SurfaceHolder) {
             super.onSurfaceCreated(holder)
             Log.d("DuoSurface", "=== onSurfaceCreated called ===")
-            Log.d("DuoSurface", "displayMetrics: ${holder.displayMetrics.widthPixels}x${holder.displayMetrics.heightPixels}")
-            Log.d("DuoSurface", "surfaceHolder: ${holder.surfaceFrame}")
             resolveDisplayRole()
         }
 
         private fun resolveDisplayRole() {
         // Display情報をログ出力
-        val dm = getSystemService(Context.DISPLAY_SERVICE) as? DisplayManager
-        dm?.displays?.forEach { display ->
-            Log.d("DuoDisplay", "displayId=${display.displayId}, size=${display.width}x${display.height}, state=${display.state}")
-        }
+            Log.d("DuoDisplay", "=== resolveDisplayRole called ===")        }
             val displayId = getDisplayContext()?.display?.displayId
             isOuterDisplay = displayId != null && displayId != Display.DEFAULT_DISPLAY
             displayRoleResolved = true
