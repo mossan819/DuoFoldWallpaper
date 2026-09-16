@@ -68,6 +68,10 @@ class DuoWallpaperService : WallpaperService() {
         private var imageWidth = 0f
         private var imageHeight = 0f
 
+        private var shouldRenderToOuter = true
+        private var shouldRenderToInner = false
+        private var mHingeAngle = 0f
+        
         private var isOuterDisplay = false
         private var displayRoleResolved = false
         private var frameCallbackPosted = false
