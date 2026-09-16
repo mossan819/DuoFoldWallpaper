@@ -9,7 +9,8 @@
     <uses-feature
         android:name="android.hardware.sensor.hinge_angle"
         android:required="false" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -38,5 +39,8 @@
                 android:resource="@xml/wallpaper" />
         </service>
 
+        <service
+            android:name=".OverlayFoldService"
+            android:exported="false" />
     </application>
 </manifest>
