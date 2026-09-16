@@ -145,6 +145,13 @@ class DuoWallpaperService : WallpaperService() {
             Log.d("DuoSurface", "=== onSurfaceChanged: w=$width, h=$height ===")
             canvasWidth = width.toFloat()
             canvasHeight = height.toFloat()
+            // ヒンジ角度を取得
+            val hingeAngle = getCurrentHingeAngle()
+            Log.d("DuoSurface", "=== onSurfaceChanged: hingeAngle=$hingeAngle, outer=$isOuterDisplay ===")
+    
+            // ヒンジ角度に基づいて描画対象を決定
+            shouldRenderToOuter = hingeAngle < 90f
+            shouldRenderToInner = hingeAngle > 45f
         }
 
         override fun onVisibilityChanged(visible: Boolean) {
@@ -211,6 +218,9 @@ class DuoWallpaperService : WallpaperService() {
         private fun stopFrameLoop() {
             choreographer.removeFrameCallback(frameCallback)
             frameCallbackPosted = false
+        private fun getCurrentHingeAngle(): Float {
+            return mHingeAngle
+    }
         }
 
         private fun drawFrame(nowNanos: Long) {
