@@ -245,10 +245,12 @@ class DuoWallpaperService : WallpaperService() {
                 // ── Determine display role ──────────────────────────
                 // On foldables with a single wallpaper engine, use aspect
                 // ratio as a heuristic: portrait-tall → outer/cover display.
-                val effectiveIsOuter = isOuterDisplay ||
-                    (getDisplayContext()?.display?.displayId == Display.DEFAULT_DISPLAY &&
-                        canvasHeight > canvasWidth * 1.5f)
-
+            val hingeAngle = getCurrentHingeAngle()
+            val effectiveIsOuter = when {
+                hingeAngle < 45f -> true      // ほぼ閉じた → 外側
+                hingeAngle > 135f -> false    // ほぼ開いた → 内側
+                else -> isOuterDisplay        // 中間は現在の状態を保持
+            }
                 // ── Progress & motion ───────────────────────────────
                 val progress = if (effectiveIsOuter) {
                     ((PI.toFloat() - displayedFold) / (PI.toFloat() / 2f)).coerceIn(0f, 1f)
