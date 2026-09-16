@@ -133,7 +133,7 @@ class DuoWallpaperService : WallpaperService() {
 
         private fun resolveDisplayRole() {
         // Display情報をログ出力
-            Log.d("DuoDisplay", "=== resolveDisplayRole called ===")        }
+            Log.d("DuoDisplay", "=== resolveDisplayRole called ===")
             val displayId = getDisplayContext()?.display?.displayId
             isOuterDisplay = displayId != null && displayId != Display.DEFAULT_DISPLAY
             displayRoleResolved = true
