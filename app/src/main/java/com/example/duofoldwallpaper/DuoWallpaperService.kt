@@ -322,7 +322,7 @@ class DuoWallpaperService : WallpaperService() {
             c.drawRect(0f, 0f, w.toFloat(), h.toFloat(), Paint().apply { shader = gradient })
             return bmp
         }
-    }
+        
         private fun getCurrentHingeAngle(): Float {
             return mHingeAngle
         }
