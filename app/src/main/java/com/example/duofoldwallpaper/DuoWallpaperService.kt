@@ -222,9 +222,6 @@ class DuoWallpaperService : WallpaperService() {
         private fun stopFrameLoop() {
             choreographer.removeFrameCallback(frameCallback)
             frameCallbackPosted = false
-        private fun getCurrentHingeAngle(): Float {
-            return mHingeAngle
-    }
         }
 
         private fun drawFrame(nowNanos: Long) {
@@ -325,5 +322,8 @@ class DuoWallpaperService : WallpaperService() {
             c.drawRect(0f, 0f, w.toFloat(), h.toFloat(), Paint().apply { shader = gradient })
             return bmp
         }
+    }
+        private fun getCurrentHingeAngle(): Float {
+        return mHingeAngle
     }
 }
