@@ -324,6 +324,5 @@ class DuoWallpaperService : WallpaperService() {
         }
     }
         private fun getCurrentHingeAngle(): Float {
-        return mHingeAngle
-    }
-}
+            return mHingeAngle
+        }
